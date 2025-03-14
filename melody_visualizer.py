@@ -27,7 +27,7 @@ def plot_piano_roll(melody_notes, note_durations=None):
     start_times = np.cumsum([0] + note_durations[:-1])  # Calculate note start times
 
     # Create the piano roll plot
-    fig, ax = plt.subplots(figsize=(5, 2))
+    fig, ax = plt.subplots(figsize=(10, 4))
     ax.barh(melody_notes, note_durations, left=start_times, height=1., color='blue')
 
     ax.set_xlabel("Time (seconds)")
