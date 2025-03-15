@@ -10,30 +10,42 @@ Original file is located at
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_piano_roll(melody_notes, note_durations=None):
+def plot_melody(melody_notes, note_durations=None):
     """
-    Plots a piano roll visualization of the melody.
+    Plots the melody as a piano roll using Matplotlib.
 
     Parameters:
-        melody_notes (list of int): List of MIDI note numbers for the melody.
-        note_durations (list of float, optional): Corresponding durations for each note in seconds.
+        melody_notes (list of int): List of MIDI note numbers.
+        note_durations (list of float, optional): Durations for each note in seconds.
                                                   If None, all notes default to 0.5 seconds.
     """
+    # Clear previous figure
+    plt.clf()  # Clears the current figure
+    
     # Set default durations if none are provided
     if note_durations is None:
-        note_durations = [0.5] * len(melody_notes)  # Default to 0.5 seconds per note
+        note_durations = [0.5] * len(melody_notes)
 
-    # Generate time axis
-    start_times = np.cumsum([0] + note_durations[:-1])  # Calculate note start times
+    start_time = 0.0  # Initialize start time
+    note_start_times = []
+    note_end_times = []
 
-    # Create the piano roll plot
+    # Collect note timing data
+    for duration in note_durations:
+        note_start_times.append(start_time)
+        note_end_times.append(start_time + duration)
+        start_time += duration
+
+    # Create a piano roll plot
     fig, ax = plt.subplots(figsize=(10, 4))
-    ax.barh(melody_notes, note_durations, left=start_times, height=1., color='blue')
+    
+    for i, (note, start, end) in enumerate(zip(melody_notes, note_start_times, note_end_times)):
+        ax.plot([start, end], [note, note], linewidth=8, label=f'Note {i+1}' if i == 0 else "")
 
-    ax.set_xlabel("Time (seconds)")
+    ax.set_xlabel("Time (s)")
     ax.set_ylabel("MIDI Note Number")
     ax.set_title("Piano Roll Visualization")
-    ax.set_yticks(range(min(melody_notes), max(melody_notes) + 1, 2))
-    ax.grid(True, linestyle="--", alpha=0.6)
+    ax.grid(True)
 
     plt.show()
+
