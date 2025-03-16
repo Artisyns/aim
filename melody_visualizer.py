@@ -11,7 +11,7 @@ def plot_melody(melody_notes, note_durations=None):
         note_durations (list of float, optional): Durations for each note in seconds.
                                                   If None, all notes default to 0.5 seconds.
     """
-    # Close previous figures to prevent overlapping
+    # Close previous figure to prevent overlapping
     plt.close('all')
     
     # Create a new figure and axis
@@ -31,11 +31,11 @@ def plot_melody(melody_notes, note_durations=None):
         note_end_times.append(start_time + duration)
         start_time += duration  # Move to next note position
 
-    # Ensure proper grid spacing
+    # Ensure proper grid spacing for Y-axis (MIDI notes)
     min_pitch = min(melody_notes) - 2
     max_pitch = max(melody_notes) + 2
 
-    # Plot each note
+    # Plot each note with its correct start and end times
     for start, end, note in zip(note_start_times, note_end_times, melody_notes):
         ax.plot([start, end], [note, note], linewidth=10, color='black')  # Notes in black
 
@@ -45,18 +45,19 @@ def plot_melody(melody_notes, note_durations=None):
     ax.set_title("Piano Roll Visualization")
 
     # Align Y-axis (MIDI notes) with grid
-    ax.set_yticks(range(min_pitch, max_pitch + 1))  
-    ax.set_ylim([min_pitch, max_pitch])
+    ax.set_yticks(range(min_pitch, max_pitch + 1))  # MIDI note numbers
+    ax.set_ylim([min_pitch, max_pitch])  # Y-axis range
     ax.yaxis.grid(True, linestyle='--', linewidth=0.5)  # Horizontal grid lines
 
     # Align X-axis (time) with grid
     max_time = max(note_end_times) if note_end_times else 1
-    ax.set_xticks(np.arange(0, max_time + 0.5, 0.5))  # Grid every 0.5s
-    ax.set_xlim([0, max_time])
+    ax.set_xticks(np.arange(0, max_time + 0.5, 0.5))  # Time grid every 0.5s
+    ax.set_xlim([0, max_time])  # Time range
     ax.xaxis.grid(True, linestyle='--', linewidth=0.5)  # Vertical grid lines
 
     # Show the updated plot
     plt.show()
+
 
 
 
