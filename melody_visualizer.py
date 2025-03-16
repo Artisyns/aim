@@ -10,7 +10,7 @@ Original file is located at
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_piano_roll(melody_notes, note_durations=None):
+def plot_melody(melody_notes, note_durations=None):
     """
     Plots a piano roll visualization of the melody.
 
