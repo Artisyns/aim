@@ -3,8 +3,7 @@ import numpy as np
 
 def plot_melody(melody_notes, note_durations=None):
     """
-    Plots the melody as a piano roll using Matplotlib, with all notes in black, aligned to the grid, 
-    and without overlapping previous notes.
+    Plots the melody as a piano roll using Matplotlib, ensuring no unintended overlap.
 
     Parameters:
         melody_notes (list of int): List of MIDI note numbers.
@@ -21,7 +20,7 @@ def plot_melody(melody_notes, note_durations=None):
     if note_durations is None:
         note_durations = [0.5] * len(melody_notes)
 
-    start_time = 0.0  # Initialize start time
+    start_time = 0.0  # Initialize start time for the first note
     note_start_times = []
     note_end_times = []
 
@@ -29,7 +28,7 @@ def plot_melody(melody_notes, note_durations=None):
     for duration in note_durations:
         note_start_times.append(start_time)
         note_end_times.append(start_time + duration)
-        start_time += duration  # Move to next note position
+        start_time = note_end_times[-1]  # Set the start time of the next note after the previous note's end
 
     # Ensure proper grid spacing for Y-axis (MIDI notes)
     min_pitch = min(melody_notes) - 2
@@ -57,8 +56,3 @@ def plot_melody(melody_notes, note_durations=None):
 
     # Show the updated plot
     plt.show()
-
-
-
-
-
