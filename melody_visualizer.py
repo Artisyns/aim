@@ -12,7 +12,7 @@ import numpy as np
 
 def plot_melody(melody_notes, note_durations=None):
     """
-    Plots the melody as a piano roll using Matplotlib.
+    Plots the melody as a piano roll using Matplotlib, with all notes in black and aligned to the grid.
 
     Parameters:
         melody_notes (list of int): List of MIDI note numbers.
@@ -20,7 +20,7 @@ def plot_melody(melody_notes, note_durations=None):
                                                   If None, all notes default to 0.5 seconds.
     """
     # Clear previous figure
-    plt.clf()  # Clears the current figure
+    plt.clf()  
     
     # Set default durations if none are provided
     if note_durations is None:
@@ -37,15 +37,25 @@ def plot_melody(melody_notes, note_durations=None):
         start_time += duration
 
     # Create a piano roll plot
-    fig, ax = plt.subplots(figsize=(10, 4))
+    fig, ax = plt.subplots(figsize=(12, 5))
     
-    for i, (note, start, end) in enumerate(zip(melody_notes, note_start_times, note_end_times)):
-        ax.plot([start, end], [note, note], linewidth=8, label=f'Note {i+1}' if i == 0 else "")
+    for start, end, note in zip(note_start_times, note_end_times, melody_notes):
+        ax.plot([start, end], [note, note], linewidth=8, color='black')  # Set notes to black
 
+    # Set axis labels and title
     ax.set_xlabel("Time (s)")
     ax.set_ylabel("MIDI Note Number")
     ax.set_title("Piano Roll Visualization")
-    ax.grid(True)
+
+    # Align the Y-axis (MIDI note numbers) with the grid
+    ax.set_yticks(range(min(melody_notes) - 1, max(melody_notes) + 2))  # Set MIDI note ticks
+    ax.yaxis.grid(True, linestyle='--', linewidth=0.5)  # Add horizontal grid lines
+
+    # Align the X-axis (time) with the grid
+    max_time = max(note_end_times) if note_end_times else 1
+    ax.set_xticks(np.arange(0, max_time + 0.5, 0.5))  # Time grid every 0.5s
+    ax.xaxis.grid(True, linestyle='--', linewidth=0.5)  # Add vertical grid lines
 
     plt.show()
+
 
