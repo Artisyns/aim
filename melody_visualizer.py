@@ -12,6 +12,9 @@ def plot_melody(melody_notes, note_durations=None):
         note_durations (list of float, optional): Durations for each note in seconds.
                                                   If None, all notes default to 0.5 seconds.
     """
+    # Close the previous plot if it exists to avoid overlaying
+    plt.close('all')
+
     # Initialize the start time for the first note
     start_time = 0.0
 
@@ -45,8 +48,7 @@ def plot_melody(melody_notes, note_durations=None):
     display(Audio(audio, rate=44100))
 
     # Now, let's visualize the melody as a piano roll
-    # Initialize a figure for plotting
-    plt.close('all')  # Close any previous figures
+    # Initialize a new figure for plotting
     fig, ax = plt.subplots(figsize=(12, 5))
 
     # Collect note start and end times for plotting
@@ -84,5 +86,5 @@ def plot_melody(melody_notes, note_durations=None):
     ax.set_xlim([0, max_time])  # Time range
     ax.xaxis.grid(True, linestyle='--', linewidth=0.5)  # Vertical grid lines
 
-    # Show the updated plot
+    # Display the updated plot
     plt.show()
