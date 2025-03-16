@@ -37,7 +37,7 @@ def plot_melody(melody_notes, note_durations=None):
         start_time += duration
 
     # Create a piano roll plot
-    fig, ax = plt.subplots(figsize=(6, 3))
+    fig, ax = plt.subplots(figsize=(10, 4))
     
     for i, (note, start, end) in enumerate(zip(melody_notes, note_start_times, note_end_times)):
         ax.plot([start, end], [note, note], linewidth=8, label=f'Note {i+1}' if i == 0 else "")
