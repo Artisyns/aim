@@ -6,6 +6,7 @@ from ipywidgets import Button
 from google.colab import files
 
 # Default SoundFont path – must exist in the environment
+soundfont_url = "https://www.dropbox.com/scl/fi/ruczr63ev3ac4xxi3q9fd/FluidR3_GM.sf2?rlkey=ih7q2m0vpp5cvvjxq1cq3s23i&dl=1"
 soundfont_path = "/content/FluidR3_GM.sf2"
 
 def save_and_play(midi_object, filename="output.mid", show_info=None):
