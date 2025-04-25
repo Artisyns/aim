@@ -6,6 +6,21 @@ from IPython.display import Audio, display
 from ipywidgets import Button
 from google.colab import files
 
+import os
+import urllib.request
+import subprocess
+
+# Check everything
+print("🔍 MIDI exists:", os.path.exists("my_chords.mid"))
+print("🔍 SoundFont exists:", os.path.exists("/content/FluidR3_GM.sf2"))
+
+# Try converting manually and capture result
+print("🔨 Running FluidSynth...")
+result = os.system("fluidsynth -ni /content/FluidR3_GM.sf2 my_chords.mid -F my_chords.wav -r 44100")
+print("✅ fluidsynth result code:", result)
+print("🎧 WAV created:", os.path.exists("my_chords.wav"))
+
+
 # Install fluidsynth (safe to rerun in Colab)
 subprocess.call(['apt-get', 'install', '-y', 'fluidsynth'])
 
