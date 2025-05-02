@@ -12,8 +12,7 @@ subprocess.call(['apt-get', 'install', '-y', 'fluidsynth'])
 
 # SoundFont location and URL
 soundfont_path = "/content/FluidR3_GM.sf2"
-#soundfont_url = "https://www.dropbox.com/scl/fi/ruczr63ev3ac4xxi3q9fd/FluidR3_GM.sf2?rlkey=ih7q2m0vpp5cvvjxq1cq3s23i&dl=1"
-soundfont_url = "https://ftp.osuosl.org/pub/musescore/soundfont/FluidR3_GM.sf2"
+soundfont_url = "https://www.dropbox.com/scl/fi/ruczr63ev3ac4xxi3q9fd/FluidR3_GM.sf2?rlkey=ih7q2m0vpp5cvvjxq1cq3s23i&dl=1"
 
 # Ensure SoundFont exists
 if not os.path.exists(soundfont_path):
@@ -32,7 +31,7 @@ def save_and_play(midi_object, filename="output.mid", show_info=None):
 
     # Paths
     soundfont_path = "/content/FluidR3_GM.sf2"
-    soundfont_url = soundfont_url = "https://ftp.osuosl.org/pub/musescore/soundfont/FluidR3_GM.sf2"
+    soundfont_url = soundfont_url = "https://www.dropbox.com/scl/fi/ruczr63ev3ac4xxi3q9fd/FluidR3_GM.sf2?rlkey=ih7q2m0vpp5cvvjxq1cq3s23i&dl=1"
 
     # Download SoundFont if needed
     if not os.path.exists(soundfont_path):
