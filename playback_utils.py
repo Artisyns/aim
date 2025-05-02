@@ -10,7 +10,7 @@ from google.colab import files
 # Install fluidsynth (safe to rerun in Colab)
 subprocess.call(['apt-get', 'install', '-y', 'fluidsynth'])
 
-SoundFont location and URL
+#SoundFont location and URL
 soundfont_path = "/content/FluidR3_GM.sf2"
 soundfont_url = "https://ftp.osuosl.org/pub/musescore/soundfont/FluidR3_GM.sf2"
 
