@@ -11,7 +11,7 @@ from google.colab import files
 subprocess.call(['apt-get', 'install', '-y', 'fluidsynth'])
 
 # SoundFont location and URL
-soundfont_path = "/content/FluidR3_GM.sf2"
+soundfont_path = "/content/FluidR3_GM.sf3"
 soundfont_url = "https://www.dropbox.com/scl/fi/8n6g3k2radpehvpqdvlgr/FluidR3.sf3?rlkey=wac12paksub7z8e58cgd4f1ds&st=njydd4an&dl=1"
 
 # Ensure SoundFont exists
@@ -30,7 +30,7 @@ def save_and_play(midi_object, filename="output.mid", show_info=None):
     subprocess.call(['apt-get', 'install', '-y', 'fluidsynth'])
 
     # Paths
-    soundfont_path = "/content/FluidR3_GM.sf2"
+    soundfont_path = "/content/FluidR3_GM.sf3"
     soundfont_url = soundfont_url = "https://www.dropbox.com/scl/fi/8n6g3k2radpehvpqdvlgr/FluidR3.sf3?rlkey=wac12paksub7z8e58cgd4f1ds&st=njydd4an&dl=1"
 
     # Download SoundFont if needed
