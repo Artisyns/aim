@@ -10,32 +10,17 @@ from google.colab import files
 # Install fluidsynth (safe to rerun in Colab)
 subprocess.call(['apt-get', 'install', '-y', 'fluidsynth'])
 
-# SoundFont location and URL
-#soundfont_path = "/content/FluidR3_GM.sf3"
-#soundfont_url = "https://www.dropbox.com/s/8n6g3k2radpehvpqdvlgr/FluidR3.sf3?rlkey=wac12paksub7z8e58cgd4f1ds&st=njydd4an&dl=1"
+SoundFont location and URL
+soundfont_path = "/content/FluidR3_GM.sf2"
+soundfont_url = "https://www.dropbox.com/scl/fi/ruczr63ev3ac4xxi3q9fd/FluidR3_GM.sf2?rlkey=ih7q2m0vpp5cvvjxq1cq3s23i&dl=1"
 
-# Ensure SoundFont exists
-#if not os.path.exists(soundfont_path):
- #   print("🎵 Downloading SoundFont...")
-  #  urllib.request.urlretrieve(soundfont_url, soundfont_path)
-#else:
- #   print("🎵 SoundFont already exists.")
+ #Ensure SoundFont exists
+if not os.path.exists(soundfont_path):
+    print("🎵 Downloading SoundFont...")
+    urllib.request.urlretrieve(soundfont_url, soundfont_path)
+else:
+    print("🎵 SoundFont already exists.")
 
-soundfont_path = "/content/FluidR3.sf3"
-soundfont_url = "https://www.dropbox.com/s/8n6g3k2radpehvpqdvlgr/FluidR3.sf3?dl=1"
-
-def download_soundfont():
-    if os.path.exists(soundfont_path):
-        print("✅ SoundFont already exists.")
-        return
-
-    print("🎵 Downloading SoundFont from Dropbox...")
-    response = requests.get(soundfont_url, allow_redirects=True)
-    if response.status_code != 200:
-        raise Exception(f"❌ Download failed with status {response.status_code}")
-    with open(soundfont_path, "wb") as f:
-        f.write(response.content)
-    print("✅ Download complete.")
 
 
 def save_and_play(midi_object, filename="output.mid", show_info=None):
@@ -46,8 +31,8 @@ def save_and_play(midi_object, filename="output.mid", show_info=None):
     subprocess.call(['apt-get', 'install', '-y', 'fluidsynth'])
 
     # Paths
-    soundfont_path = "/content/FluidR3_GM.sf3"
-    soundfont_url = soundfont_url = "https://www.dropbox.com/s/8n6g3k2radpehvpqdvlgr/FluidR3.sf3?dl=1"
+    soundfont_path = "/content/FluidR3_GM.sf2"
+    soundfont_url = "https://www.dropbox.com/scl/fi/ruczr63ev3ac4xxi3q9fd/FluidR3_GM.sf2?rlkey=ih7q2m0vpp5cvvjxq1cq3s23i&dl=1"
 
     # Download SoundFont if needed
     if not os.path.exists(soundfont_path):
