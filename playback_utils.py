@@ -47,7 +47,7 @@ def save_and_play(midi_object, filename="output.mid", show_info=None):
 
     # Paths
     soundfont_path = "/content/FluidR3_GM.sf3"
-    soundfont_url = soundfont_url = "https://www.dropbox.com/s/8n6g3k2radpehvpqdvlgr/FluidR3.sf3?rlkey=wac12paksub7z8e58cgd4f1ds&st=njydd4an&dl=1"
+    soundfont_url = soundfont_url = "https://www.dropbox.com/s/8n6g3k2radpehvpqdvlgr/FluidR3.sf3?dl=1"
 
     # Download SoundFont if needed
     if not os.path.exists(soundfont_path):
