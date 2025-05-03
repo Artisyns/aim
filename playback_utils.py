@@ -21,8 +21,6 @@ if not os.path.exists(soundfont_path):
 else:
     print("🎵 SoundFont already exists.")
 
-
-
 def save_and_play(midi_object, filename="output.mid", show_info=None):
     import urllib.request
     import subprocess
