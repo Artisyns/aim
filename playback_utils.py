@@ -1,6 +1,6 @@
 import os
 import subprocess
-import requests
+import urllib.request
 import pretty_midi
 from IPython.display import Audio, display
 from ipywidgets import Button
@@ -44,14 +44,15 @@ def save_and_play(midi_object, filename="output.mid", show_info=None):
 
     # Convert to WAV
     wav_filename = filename.replace(".mid", ".wav")
-    os.system(f"fluidsynth -ni {soundfont_path} {filename} -F {wav_filename} -r 44100")
+    #os.system(f"fluidsynth -ni {soundfont_path} {filename} -F {wav_filename} -r 44100")
+    subprocess.run(["fluidsynth", "-ni", soundfont_path, filename, "-F", wav_filename, "-r", "44100"])
 
     if not os.path.exists(wav_filename):
         print("❌ Failed to create WAV file. Check fluidsynth and MIDI input.")
         return
 
     # Playback
-    from IPython.display import Audio, display
+    #from IPython.display import Audio, display
     display(Audio(filename=wav_filename, rate=44100))
 
     # Print metadata
@@ -61,8 +62,8 @@ def save_and_play(midi_object, filename="output.mid", show_info=None):
             print(f" - {k}: {v}")
 
     # Download button
-    from ipywidgets import Button
-    from google.colab import files
+    #from ipywidgets import Button
+    #from google.colab import files
     button = Button(description="⬇️ Download MIDI File")
     button.on_click(lambda b: files.download(filename))
     display(button)
